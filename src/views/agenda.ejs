@@ -1,0 +1,87 @@
+<%- include ('partials/_header'); %>
+ 
+    <div class="container-fluid">
+      <div class="row">
+        <!-- FORM-->
+        <div class="col-md-3 mt-4" >
+            <div class="events card">
+                <div class="card-body">
+                    <form action="/add" method="POST">
+                        <img src="https://assets.sutori.com/user-uploads/image/b42f01bb-2736-4c17-aac5-3805f02d38e4/fc4cb471ec2b91e2b4e8581ef4103b82.png" alt="Logo UDG" width="90%" height="150px" class="img-logo">
+                        <div class="form-group">
+                            <input type="text" name="title" placeholder="Inserta un Titulo" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="datetime-local" name="date" placeholder="Inserta la Fecha" class="form-control" value="2020-11-01"
+                            min="2020-11-06" max="2021-12-31" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="description" id="" cols="150" rows="15" class="form-control" placeholder="Inserta una Descripción" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Agregar Tarea / Evento 
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- LIST-->
+        <div class="col-md-9">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Titulo</th>
+                        <th>Fecha</th>
+                        <th>Descripción</th>
+                        <th>Operación</th>
+                    </tr>
+                </thead>
+                <tbody> 
+                    <% for(var i=0; i < tasks.length; i++) { %>
+                        <tr>
+                          <td><%= i + 1%></td>
+                          <td><strong><%= tasks[i].title %></strong></td>
+                          <td><%= tasks[i].date %><br></td>
+                          <td><%= tasks[i].description %></td>
+                          <td>
+                            <a
+                              class="done <%= tasks[i].status ? 'btn btn-success' : 'btn btn-dark'%>"
+                              href="/turn/<%= tasks[i]._id %>">Terminada</a>
+                            <a href="/delete/<%= tasks[i]._id %>"
+                              class="delete btn btn-danger">
+                              Eliminar
+                            </a>
+                            <a href="/edit/<%= tasks[i]._id %>" class="edit btn btn-info">
+                              Editar
+                            </a>
+                          </td>
+                        </tr>
+                      <% } %> 
+                </tbody>
+            </table>
+        </div>
+      </div>  
+    </div>
+
+    <style>
+      .events{
+        box-shadow: 0px 5px 10px -6px black;
+      }
+      .img-logo{
+        display:block;
+        margin:auto;
+      }
+      th, td{
+        text-align: center;
+      }
+      .copyright{
+        margin-top: 80px;
+      }
+      .done, .delete, .edit{
+        display:block;
+        margin:5px auto;
+      }
+    </style>
+
+    <%- include ('partials/_footer'); %>

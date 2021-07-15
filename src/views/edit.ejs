@@ -1,0 +1,27 @@
+<%- include ('partials/_header'); %>
+
+<div class="container mt-5">
+    <div class="row">
+      <!-- FORM-->
+      <div class="col-md-8 offset-md-2">
+          <div class="card">
+              <div class="card-body">
+                  <form action="/edit/<%= task._id %>" method="POST">
+                      <div class="form-group">
+                          <input type="text" name="title" placeholder="Inserta un Titulo" class="form-control" value="<%= task.title %>">
+                      </div>
+                      <div class="form-group">
+                        <input type="datetime-local" name="date" placeholder="Inserta la Fecha" class="form-control" value="2020-11-01"
+                        min="2020-11-06" max="2021-12-31">
+                      </div>
+                      <div class="form-group">
+                          <textarea name="description" id="" cols="80" rows="7" class="form-control" placeholder="Inserta una Descripción"><%= task.description %></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary btn-block">
+                          Actualizar Tarea / Evento
+                      </button>
+                  </form>
+              </div>
+          </div>
+      </div>
+
